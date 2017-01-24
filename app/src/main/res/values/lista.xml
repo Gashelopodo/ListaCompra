@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="lista_compra">
+        <item>Ajo en polvo</item>
+        <item>Manzanas</item>
+        <item>Chocolate</item>
+        <item>Leche</item>
+        <item>Carne picada</item>
+        <item>Jalapeños</item>
+        <item>Pan</item>
+        <item>Mantequilla</item>
+        <item>Cebollas</item>
+        <item>Queso rallado</item>
+        <item>Fanta Naranja</item>
+        <item>Pimiento rojo</item>
+        <item>Patatas</item>
+        <item>Servilletas</item>
+        <item>Galletas</item>
+        <item>Amoniaco</item>
+        <item>Papel higienico</item>
+        <item>Atún</item>
+        <item>Aceitunas</item>
+        <item>Cervezas</item>
+    </array>
+
+
+</resources>
