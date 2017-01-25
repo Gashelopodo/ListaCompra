@@ -23,9 +23,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Cargamos array
-        if(listaArray == null) {
-            listaArray = getResources().getStringArray(R.array.lista_compra);
+        //Cargamos array verificando si está guardado en el bundle o no
+        listaArray = getResources().getStringArray(R.array.lista_compra);
+        if (savedInstanceState != null) {
+            clicks = savedInstanceState.getBooleanArray("clicks");
+        }else{
             clicks = new boolean[listaArray.length];
             Arrays.fill(clicks, false);
         }
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //Controlamos la selección y deselección
                 if(clicks[i]){
                     view.setBackgroundColor(Color.WHITE);
                     clicks[i] = false;
@@ -52,17 +55,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        Log.d(getClass().getCanonicalName(), "Recojo");
-        clicks = savedInstanceState.getBooleanArray("clicks");
-    }
-
-
-    @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
-        Log.d(getClass().getCanonicalName(), "Salvo");
+    protected void onSaveInstanceState(Bundle outState) {
+        //Guardo el array de clicks en el bundle
         outState.putBooleanArray("clicks", clicks);
+        super.onSaveInstanceState(outState);
     }
 }

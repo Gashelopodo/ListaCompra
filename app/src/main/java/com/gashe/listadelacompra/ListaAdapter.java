@@ -56,21 +56,25 @@ public class ListaAdapter extends BaseAdapter{
     @Override
     public View getView(int i, View view, ViewGroup parent) {
         TextView textView;
+        //controlamos el reciclado
         if(view == null){
+            //creamos vista para el retorno y seteamos propiedades
             textView = new TextView(ct);
             textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 150));
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
             textView.setGravity(Gravity.CENTER_VERTICAL);
         }else{
+            //reciclamos vista
             textView = (TextView) view;
         }
 
+        //controlamos las selecciones
         if(clicks[i]){
             textView.setBackgroundColor(Color.CYAN);
         }else{
             textView.setBackgroundColor(Color.WHITE);
         }
-
+        //pintamos valor del array
         textView.setText(listaArray[i]);
 
         return textView;
