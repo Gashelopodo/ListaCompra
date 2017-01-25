@@ -30,9 +30,9 @@ public class ListaAdapter extends BaseAdapter{
 
     private Context ct;
     private String[] listaArray;
-    private Boolean[] clicks;
+    private boolean[] clicks;
 
-    public ListaAdapter(Context context, String[] listaArray, Boolean[] clicks) {
+    public ListaAdapter(Context context, String[] listaArray, boolean[] clicks) {
         this.ct = context;
         this.listaArray = listaArray;
         this.clicks = clicks;

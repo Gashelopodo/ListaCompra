@@ -2,8 +2,10 @@ package com.gashe.listadelacompra;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -13,15 +15,20 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String[] listaArray;
+    private boolean[] clicks;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //Cargamos array
-        String[] listaArray = getResources().getStringArray(R.array.lista_compra);
-        final Boolean[] clicks = new Boolean[listaArray.length];
-        Arrays.fill(clicks, false);
+        if(listaArray == null) {
+            listaArray = getResources().getStringArray(R.array.lista_compra);
+            clicks = new boolean[listaArray.length];
+            Arrays.fill(clicks, false);
+        }
 
         //creamos adaptador y asociamos layout
         ListaAdapter adaptador = new ListaAdapter(this, listaArray, clicks);
@@ -42,5 +49,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.d(getClass().getCanonicalName(), "Recojo");
+        clicks = savedInstanceState.getBooleanArray("clicks");
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        Log.d(getClass().getCanonicalName(), "Salvo");
+        outState.putBooleanArray("clicks", clicks);
     }
 }
